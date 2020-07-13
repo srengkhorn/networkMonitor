@@ -1,4 +1,4 @@
-package co.ltlabs.networkmonitor
+package com.techkh.networkmonitor
 
 import android.content.BroadcastReceiver
 import android.content.Context

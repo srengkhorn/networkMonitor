@@ -1,4 +1,4 @@
-package co.ltlabs.networkmonitor
+package com.techkh.networkmonitor
 
 import org.junit.Test
 
