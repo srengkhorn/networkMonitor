@@ -1,5 +1,6 @@
 package com.techkh.networkmonitor
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
@@ -15,11 +16,8 @@ class NetworkMonitor(private val context: Context, private var listener: Connect
     private lateinit var dialogLayout: View
     lateinit var dialog: AlertDialog
 
-    fun start(
-        title: String = context.getString(R.string.internet_error),
-        message: String = context.getString(R.string.content_warning)) {
-
-        initDialog(title, message)
+    fun start() {
+        initDialog()
         initMonitor()
     }
 
@@ -46,13 +44,12 @@ class NetworkMonitor(private val context: Context, private var listener: Connect
         }
     }
 
-    private fun initDialog(title: String, message: String) {
+    @SuppressLint("InflateParams")
+    private fun initDialog() {
         dialogLayout = LayoutInflater.from(context).inflate(R.layout.dialog_warning, null)
         val builder = AlertDialog.Builder(context).setView(dialogLayout)
         dialog = builder.show()
         dialog.setCancelable(false)
-        dialog.warningTitle.text = title
-        dialog.warningMessage.text = message
     }
 
     fun onDialogActionListener(listener: (DialogListener)) {
@@ -60,11 +57,21 @@ class NetworkMonitor(private val context: Context, private var listener: Connect
         dialog.btnTryAgain.setOnClickListener { listener.onTryAgain() }
     }
 
+    private fun setCustomContent(title: String, message: String) {
+        dialog.warningTitle.text = title
+        dialog.warningMessage.text = message
+    }
+
+    fun setBackgroundTitle(colorString: String = "#F57C00") {
+        dialog.warningTitle.setBackgroundColor(Color.parseColor(colorString))
+    }
+
     fun hideAlert() {
         dialog.dismiss()
     }
 
-    fun showAlert() {
+    fun showAlert(title: String = context.getString(R.string.internet_error), message: String = context.getString(R.string.content_warning)) {
+        setCustomContent(title, message)
         dialog.show()
     }
 

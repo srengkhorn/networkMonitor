@@ -3,7 +3,11 @@
 
     <style name="AppMTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
 
-    <style name="WarningText14">
+    <style name="TextBase">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="WarningText14" parent="TextBase">
         <item name="android:textSize">14sp</item>
         <item name="android:paddingStart">20dp</item>
         <item name="android:paddingEnd">20dp</item>
