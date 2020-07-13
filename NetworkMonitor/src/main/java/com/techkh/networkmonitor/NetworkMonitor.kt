@@ -1,99 +1,69 @@
 package com.techkh.networkmonitor
 
-import android.content.BroadcastReceiver
+import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import com.techkh.networkmonitor.util.CoroutineUtil
+import kotlinx.android.synthetic.main.dialog_warning.*
 
-class NetworkMonitor(context: Context) {
+class NetworkMonitor(private val context: Context, private var listener: WarningListener) {
 
-    private var mContext = context
-    private lateinit var networkCallback: ConnectivityManager.NetworkCallback
-    lateinit var result: ((isAvailable: Boolean, type: ConnectionType?) -> Unit)
+    private var networkMonitor = NetworkStateMonitor(this.context)
 
-    @Suppress("DEPRECATION")
-    fun register() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            // Use NetworkCallback for Android 9 and above
-            val connectivityManager = mContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private lateinit var dialogLayout: View
+    lateinit var dialog: AlertDialog
 
-            if (connectivityManager.activeNetwork == null) {
-                // UNAVAILABLE
-                result(false,null)
-            }
+    fun start(title: String = context.getString(R.string.internet_error), message: String = context.getString(R.string.content_warning)) {
+        initWaringDialog(title, message)
+        initMonitor()
+    }
 
-            // Check when the connection changes
-            networkCallback = object : ConnectivityManager.NetworkCallback() {
-                override fun onLost(network: Network) {
-                    super.onLost(network)
-                    // UNAVAILABLE
-                    result(false, null)
-                }
+    private fun initWaringDialog(title: String, message: String) {
+        dialogLayout = LayoutInflater.from(context).inflate(R.layout.dialog_warning, null)
+        val builder = AlertDialog.Builder(context).setView(dialogLayout)
+        dialog = builder.show()
+        dialog.setCancelable(false)
 
-                override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
-                    super.onCapabilitiesChanged(network, networkCapabilities)
-                    when {
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                            // WIFI
-                            result(true,ConnectionType.WIFI)
+        dialog.warningTitle.text = title
+        dialog.warningMessage.text = message
+        dialog.btnCancel.setOnClickListener { listener.onCancel() }
+        dialog.btnTryAgain.setOnClickListener { listener.onTryAgain() }
+    }
+
+    private fun initMonitor() {
+        networkMonitor.result = { isAvailable, type ->
+            CoroutineUtil.main {
+                when (isAvailable) {
+                    true -> {
+                        when (type) {
+                            ConnectionType.WIFI -> {
+                                dialog.dismiss()
+                            }
+                            ConnectionType.CELLULAR -> {
+                                dialog.dismiss()
+                            }
+                            else -> {}
                         }
-                        else -> {
-                            // CELLULAR
-                            result(true,ConnectionType.CELLULAR)
-                        }
+                    }
+                    false -> {
+                        dialog.show()
                     }
                 }
             }
-            connectivityManager.registerDefaultNetworkCallback(networkCallback)
-        } else {
-            // Use Intent Filter for Android 8 and below
-            val intentFilter = IntentFilter()
-            intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
-            mContext.registerReceiver(networkChangeReceiver, intentFilter)
         }
+    }
+
+    fun register() {
+        networkMonitor.register()
     }
 
     fun unregister() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val connectivityManager =
-                mContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            connectivityManager.unregisterNetworkCallback(networkCallback)
-        } else {
-            mContext.unregisterReceiver(networkChangeReceiver)
-        }
+        networkMonitor.unregister()
     }
 
-    @Suppress("DEPRECATION")
-    private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-
-            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-
-            if (activeNetworkInfo != null) {
-                // Get Type of Connection
-                when (activeNetworkInfo.type) {
-                    ConnectivityManager.TYPE_WIFI -> {
-                        // WIFI
-                        result(true, ConnectionType.WIFI)
-                    }
-                    else -> {
-                        // CELLULAR
-                        result(true, ConnectionType.CELLULAR)
-                    }
-                }
-            } else {
-                // UNAVAILABLE
-                result(false, null)
-            }
-        }
+    interface WarningListener {
+        fun onCancel()
+        fun onTryAgain()
     }
-}
-
-enum class ConnectionType {
-    WIFI, CELLULAR
 }
