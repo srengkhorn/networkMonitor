@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="internet_error">Internet Error</string>
+    <string name="content_warning">Please check your internet connection. Or try upload again.</string>
+    <string name="cancel">Cancel</string>
+    <string name="try_again">Try Again</string>
+</resources>
