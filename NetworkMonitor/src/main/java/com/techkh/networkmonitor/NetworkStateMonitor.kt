@@ -39,11 +39,11 @@ class NetworkStateMonitor(context: Context) {
                     when {
                         networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                             // WIFI
-                            result(true,ConnectionType.WIFI)
+                            result(true, ConnectionType.WIFI)
                         }
                         else -> {
                             // CELLULAR
-                            result(true,ConnectionType.CELLULAR)
+                            result(true, ConnectionType.CELLULAR)
                         }
                     }
                 }
