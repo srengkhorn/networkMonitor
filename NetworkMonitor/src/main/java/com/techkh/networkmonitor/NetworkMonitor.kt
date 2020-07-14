@@ -15,7 +15,7 @@ class NetworkMonitor(private val context: Context) {
     private lateinit var listener: ConnectionListener
 
     private lateinit var dialogLayout: View
-    private lateinit var dialog: AlertDialog
+    lateinit var dialog: AlertDialog
 
     fun start() {
         initDialog()
