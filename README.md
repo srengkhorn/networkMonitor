@@ -33,6 +33,21 @@ class MainActivity : AppCompatActivity() {
   .....
 }
 ```
+### 2. Initialize 
+
+```kotlin
+........
+
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+	
+	networkMonitor = NetworkMonitor(this)
+	...
+}
+
+.....
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
