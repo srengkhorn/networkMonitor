@@ -45,7 +45,6 @@ class NetworkMonitor(private val context: Context) {
         }
     }
 
-    @SuppressLint("InflateParams")
     private fun initDialog() {
         dialogLayout = LayoutInflater.from(context).inflate(R.layout.dialog_warning, null)
         val builder = AlertDialog.Builder(context).setView(dialogLayout)
