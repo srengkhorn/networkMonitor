@@ -9,12 +9,13 @@ import android.view.View
 import com.techkh.networkmonitor.util.CoroutineUtil
 import kotlinx.android.synthetic.main.dialog_warning.*
 
-class NetworkMonitor(private val context: Context, private var listener: ConnectionListener) {
+class NetworkMonitor(private val context: Context) {
 
     private var networkMonitor = NetworkStateMonitor(this.context)
+    private lateinit var listener: ConnectionListener
 
     private lateinit var dialogLayout: View
-    lateinit var dialog: AlertDialog
+    private lateinit var dialog: AlertDialog
 
     fun start() {
         initDialog()
@@ -81,6 +82,10 @@ class NetworkMonitor(private val context: Context, private var listener: Connect
 
     fun unregister() {
         networkMonitor.unregister()
+    }
+
+    fun setNetworkListener(listener: ConnectionListener) {
+        this.listener = listener
     }
 
     interface ConnectionListener {

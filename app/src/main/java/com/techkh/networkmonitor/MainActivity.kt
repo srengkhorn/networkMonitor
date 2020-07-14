@@ -8,14 +8,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), NetworkMonitor.ConnectionListener {
 
     lateinit var networkMonitor: NetworkMonitor
-    private lateinit var listener: NetworkMonitor.ConnectionListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-         this.listener = this
-         networkMonitor = NetworkMonitor(this, listener)
+         networkMonitor = NetworkMonitor(this)
+         networkMonitor.setNetworkListener(this)
          networkMonitor.start()
     }
 
