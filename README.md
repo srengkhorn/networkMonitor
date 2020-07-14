@@ -2,6 +2,9 @@
 
 [![](https://jitpack.io/v/srengkhorn/networkMonitor.svg)](https://jitpack.io/#srengkhorn/networkMonitor)
 
+# Screenshot
+<img src="https://techkh.com/wp-content/uploads/2020/07/demo_01.png" width="25%"> <img src="https://techkh.com/wp-content/uploads/2020/07/demo_02.png" width="25%">
+
 ## Installation
 ### Step 1. Add the JitPack repository to your build file. 
 - Add it in your root build.gradle at the end of repositories:
