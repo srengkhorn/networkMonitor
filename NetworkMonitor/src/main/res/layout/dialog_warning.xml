@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/warningTitle"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WarningText14"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:text="@string/internet_error"
+            android:background="@color/colorOrange"/>
+
+        <TextView
+            android:id="@+id/warningMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/WarningText14"
+            android:paddingBottom="45dp"
+            android:textColor="@color/colorGray800"
+            android:text="@string/content_warning"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGray200"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                android:theme="@style/AppMTheme"
+                style="@style/ButtonAlertStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textColor="@color/colorGray800" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTryAgain"
+                android:theme="@style/AppMTheme"
+                style="@style/ButtonAlertStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/try_again"
+                android:paddingStart="10dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/colorGreen750" />
+        </LinearLayout>
+
+</LinearLayout>
