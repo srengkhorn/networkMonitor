@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:backgroundTint="@android:color/white">
+    android:orientation="vertical">
 
         <TextView
             android:id="@+id/warningTitle"
@@ -35,18 +34,16 @@
             android:orientation="horizontal"
             android:gravity="right">
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnCancel"
-                android:theme="@style/AppMTheme"
                 style="@style/ButtonAlertStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"
                 android:textColor="@color/colorGray800" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnTryAgain"
-                android:theme="@style/AppMTheme"
                 style="@style/ButtonAlertStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

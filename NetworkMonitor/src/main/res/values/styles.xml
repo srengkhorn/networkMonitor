@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppMTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
-
     <style name="TextBase">
         <item name="android:fontFamily">@font/roboto</item>
     </style>
@@ -14,12 +12,14 @@
         <item name="android:paddingTop">10dp</item>
     </style>
 
-    <style name="ButtonAlertStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="ButtonAlertStyle" parent="Widget.AppCompat.Button">
         <item name="android:textSize">14sp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:letterSpacing">0</item>
-        <item name="strokeWidth">0dp</item>
+
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:background">@drawable/button_pressed</item>
     </style>
 
 </resources>
