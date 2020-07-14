@@ -21,7 +21,7 @@ allprojects {
 
 ```bash
 dependencies {
-  implementation 'com.github.srengkhorn:networkMonitor:latest_version'
+  implementation 'com.github.srengkhorn:networkMonitor:{latest_version}'
 }
 ```
 ## Usage
