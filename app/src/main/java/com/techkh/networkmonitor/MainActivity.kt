@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), NetworkMonitor.ConnectionListener {
     override fun isNotConnected() {
         statusNetwork.text = "Internet is NOT Connected"
         networkMonitor.showAlert()
+        networkMonitor.setBackgroundMessage("#FFFFFF")
         networkMonitor.onDialogActionListener(object: NetworkMonitor.DialogListener{
             override fun onCancel() {
                 Toast.makeText(applicationContext, "Clicked Cancel", Toast.LENGTH_SHORT).show()

@@ -15,7 +15,7 @@ class NetworkMonitor(private val context: Context) {
     private lateinit var listener: ConnectionListener
 
     private lateinit var dialogLayout: View
-    lateinit var dialog: AlertDialog
+    private lateinit var dialog: AlertDialog
 
     fun start() {
         initDialog()
@@ -45,6 +45,7 @@ class NetworkMonitor(private val context: Context) {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun initDialog() {
         dialogLayout = LayoutInflater.from(context).inflate(R.layout.dialog_warning, null)
         val builder = AlertDialog.Builder(context).setView(dialogLayout)
@@ -64,6 +65,10 @@ class NetworkMonitor(private val context: Context) {
 
     fun setBackgroundTitle(colorString: String = "#F57C00") {
         dialog.warningTitle.setBackgroundColor(Color.parseColor(colorString))
+    }
+
+    fun setBackgroundMessage(colorString: String = "#FFFFFF") {
+        dialog.warningMessage.setBackgroundColor(Color.parseColor(colorString))
     }
 
     fun hideAlert() {
