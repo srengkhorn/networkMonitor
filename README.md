@@ -1,6 +1,6 @@
 # NetworkMonitor
 
-[![](https://jitpack.io/v/srengkhorn/networkMonitor.svg)](https://jitpack.io/#srengkhorn/networkMonitor)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs) [![Version](https://badge.fury.io/gh/tterb%2FHyde.svg)](https://badge.fury.io/gh/tterb%2FHyde) [![](https://jitpack.io/v/srengkhorn/networkMonitor.svg)](https://jitpack.io/#srengkhorn/networkMonitor) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 # Screenshot
 <img src="https://techkh.com/wp-content/uploads/2020/07/demo_01.png" width="25%"> <img src="https://techkh.com/wp-content/uploads/2020/07/demo_02.png" width="25%"> <img src="https://media0.giphy.com/media/KZSSxGymfQgQWPEAu6/giphy.gif" width="24%">
