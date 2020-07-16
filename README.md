@@ -83,6 +83,20 @@ class MainActivity : AppCompatActivity(), NetworkMonitor.ConnectionListener {
     }
 }
 ```
+## Dialog Customization
+- Title & Message
+```kotlin
+networkMonitor.showAlert("Your own dialog title", "Your own dialog message")
+networkMonitor.showAlert() // use default, leave it blank
+```
+- Title & Message Background Color
+```kotlin
+networkMonitor.setBackgroundTitle("#FFFFFF") // Add your own String Color
+networkMonitor.setBackgroundTitle() // default orange
+
+networkMonitor.setBackgroundMessage("#03DAC5") // Add your own String Color
+networkMonitor.setBackgroundMessage() // its default is white color.
+```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to update tests as appropriate.
